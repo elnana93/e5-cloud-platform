@@ -1,15 +1,8 @@
-# Reliability & Disaster Recovery: Enterprise Engineering Standard
+# Reliability & Resilience
 
-## Service Level Agreement (SLA)
-- **Target Uptime**: 99.99% availability via multi-region active-passive failover.
-- **RTO/RPO**: RTO < 15m; RPO < 5m via asynchronous replication.
+Our architecture guarantees high availability through cloud-native, geo-distributed services.
 
-## Engineering Mechanisms
-- **S3 Cross-Region Replication (CRR)**: All critical assets and backups are replicated across us-west-2 and us-east-1 to guarantee data durability against regional outages.
-- **DynamoDB Global Tables**: Enabled for multi-region writes to eliminate data silos and provide sub-10ms latency for global clients.
-- **Automated Circuit Breakers**: Custom Lambda logic implemented to prevent cascading failures during traffic spikes.
-- **Infrastructure as Code (IaC) Integrity**: Terraform state is locked and versioned, ensuring deterministic, repeatable deployments.
+* **Geo-Redundancy:** Multi-region active-passive failover with automatic traffic routing.
+* **Data Durability:** S3 Cross-Region Replication (CRR) and DynamoDB Point-in-Time Recovery.
+* **Zero-Dependency Infrastructure:** By operating serverlessly, we eliminate network-layer vulnerabilities. Availability is bound to the cloud provider’s regional SLA, ensuring 99.9%+ performance uptime.
 
-## Skillsets Applied
-- **Cloud Engineering**: Expert-level proficiency in AWS networking, VPC design, and multi-region synchronization.
-- **DevOps Engineering**: Implementation of automated failover triggers and health monitoring via AWS CloudWatch.

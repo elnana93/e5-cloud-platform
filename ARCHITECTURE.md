@@ -1,17 +1,10 @@
-# System Architecture Blueprint
+# System Architecture: E5 Cloud
 
-## Architectural Paradigm
-E5 Cloud is built on a Cloud-Native, Serverless Microservices paradigm, designed by a Solutions Architect to minimize latency and maximize developer velocity.
+E5 Cloud operates on a fully decoupled, serverless microservices stack. We utilize event-driven triggers to execute business logic without any server-side management or networking overhead.
 
-## Core Component Logic
-1. **Intake Engine**: Uses asynchronous event-driven triggers to process leads, offloading compute to ephemeral, auto-scaling Lambda functions.
-2. **Payment Engine**: Implemented with atomic transaction guards to ensure data integrity during high-volume financial processing.
-3. **Asset Management**: Orchestrates complex object storage and metadata indexing in DynamoDB for O(1) retrieval.
+* **Intake Layer:** API Gateway entry points integrated with AWS WAF for edge filtering.
+* **Logic Layer:** Pure Python Lambda functions (strictly no JavaScript) triggered by API events.
+* **Persistence Layer:** DynamoDB with provisioned RUs/WUs configured for sub-millisecond response.
+* **Orchestration:** Managed via Terraform modules. No manual provisioning. 
+* **Telemetry:** Real-time observability via CloudWatch Logs and OpenClaw alerting.
 
-## The DevOps "Glue"
-- **Infrastructure as Code (IaC)**: Terraform manages the full lifecycle, reducing human error to zero.
-- **Loose Coupling**: Services communicate via event bus patterns, allowing for independent scaling and deployment.
-
-## Skillsets Applied
-- **Solutions Architecture**: Design of decoupled, highly-available systems that eliminate technical debt.
-- **DevOps Engineering**: Implementation of ephemeral, secure CI/CD pipelines that scale with business needs.
